@@ -1,0 +1,34 @@
+{
+   "1": {
+      "id": "231",
+      "ip": "192.168.0.95",
+      "room": "bedroom",
+      "group": "socket",
+      "name": "Nightlight",
+      "value": "Enable"
+   },
+   "2": {
+      "id": "7",
+      "ip": "192.168.0.96",
+      "room": "kitchen",
+      "group": "socket",
+      "name": "Kettle",
+      "value": "Disable"
+   },
+   "3": {
+      "id": "57",
+      "ip": "192.168.0.97s",
+      "room": "living",
+      "group": "socket",
+      "name": "Television",
+      "value": "Disable"
+   },
+   "4": {
+      "id": "77",
+      "ip": "192.168.31.54",
+      "room": "bathroom",
+      "group": "socket",
+      "name": "Washing machine",
+      "value": "Disable"
+   }
+}

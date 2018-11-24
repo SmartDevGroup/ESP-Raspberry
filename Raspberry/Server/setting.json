@@ -1,0 +1,9 @@
+{
+   "accId": "123456789",
+   "serial": "12345678910",
+   "urlToData": "service/raspi.php?api=",
+   "urlFirstConnection": "service/add_brain.php?serial=",
+   "first_connection": "False",
+   "domain": "http://smartdevgroup.hopto.org/",
+   "urlToDataOld": "&con=first"
+}
