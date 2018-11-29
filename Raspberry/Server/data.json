@@ -1,34 +1,98 @@
 {
    "1": {
-      "id": "231",
-      "ip": "192.168.0.95",
+      "id": "1596347812",
       "room": "bedroom",
       "group": "socket",
-      "name": "Nightlight",
-      "value": "Enable"
+      "name": "\u041b\u0430\u043c\u043f\u0430",
+      "value": "Disable",
+      "ip": "192.168.31.19"
    },
    "2": {
-      "id": "7",
-      "ip": "192.168.0.96",
-      "room": "kitchen",
+      "id": "2222",
+      "room": "bedroom",
       "group": "socket",
-      "name": "Kettle",
-      "value": "Disable"
+      "name": "\u0422\u0435\u043b\u0435\u0444\u043e\u043d",
+      "value": "Disable",
+      "ip": "192.168.0.2"
    },
    "3": {
-      "id": "57",
-      "ip": "192.168.0.97s",
-      "room": "living",
+      "id": "3333",
+      "room": "bedroom",
       "group": "socket",
-      "name": "Television",
-      "value": "Disable"
+      "name": "\u041e\u0431\u0456\u0433\u0440\u0456\u0432\u0430\u0447",
+      "value": "Disable",
+      "ip": ""
    },
    "4": {
-      "id": "77",
-      "ip": "192.168.31.54",
-      "room": "bathroom",
+      "id": "4444",
+      "room": "bedroom",
       "group": "socket",
-      "name": "Washing machine",
-      "value": "Disable"
+      "name": "\u0422\u0435\u043b\u0435\u0432\u0456\u0437\u043e\u0440",
+      "value": "Disable",
+      "ip": ""
+   },
+   "5": {
+      "id": "5555",
+      "room": "bedroom",
+      "group": "socket",
+      "name": "\u041a\u043e\u043d\u0434\u0438\u0446\u0456\u043e\u043d\u0435\u0440",
+      "value": "Disable",
+      "ip": ""
+   },
+   "6": {
+      "id": "6666",
+      "room": "bedroom",
+      "group": "socket",
+      "name": "\u0411\u0443\u0434\u0438\u043b\u044c\u043d\u0438\u043a",
+      "value": "Disable",
+      "ip": "192.168.0.4"
+   },
+   "7": {
+      "id": "666",
+      "room": "kitchen",
+      "group": "socket",
+      "name": "\u0427\u0430\u0439\u043d\u0438\u043a",
+      "value": "Disable",
+      "ip": "192.168.0.2"
+   },
+   "8": {
+      "id": "2",
+      "room": "kitchen",
+      "group": "socket",
+      "name": "\u0425\u043e\u043b\u043e\u0434\u0438\u043b\u044c\u043d\u0438\u043a",
+      "value": "Disable",
+      "ip": "192.168.0.2"
+   },
+   "9": {
+      "id": "321",
+      "room": "kitchen",
+      "group": "socket",
+      "name": "\u041c\u0443\u043b\u044c\u0442\u0438\u0432\u0430\u0440\u043a\u0430",
+      "value": "Disable",
+      "ip": ""
+   },
+   "10": {
+      "id": "0",
+      "room": "kitchen",
+      "group": "socket",
+      "name": "\u041a\u0430\u0432\u043e\u0432\u0430\u0440\u043a\u0430",
+      "value": "Disable",
+      "ip": ""
+   },
+   "11": {
+      "id": "0",
+      "room": "kitchen",
+      "group": "socket",
+      "name": "\u041c\u0456\u043a\u0441\u0435\u0440",
+      "value": "Disable",
+      "ip": ""
+   },
+   "12": {
+      "id": "2",
+      "room": "kitchen",
+      "group": "socket",
+      "name": "\u0422\u0435\u043b\u0435\u0432\u0456\u0437\u043e\u0440",
+      "value": "Disable",
+      "ip": "192.168.0.2"
    }
 }

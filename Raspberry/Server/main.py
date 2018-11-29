@@ -62,7 +62,7 @@ def chek_box_ajax():
 
 
 def runserver():
-    run(host="192.168.184.103", port=80, debug=True)
+    run(host="192.168.184.102", port=80, debug=True)
 
 
 runserver()

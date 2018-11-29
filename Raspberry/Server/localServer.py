@@ -17,28 +17,40 @@ def load_json(query):
     if query == "setting":
         with open('setting.json', 'r', encoding='utf-8') as fh:
             data = json.load(fh)
-    if query == "":
-        pass
+    elif query == "poll":
+        with open('poll.json', 'r', encoding='utf-8') as fh:
+            data = json.load(fh)
+    elif query == "data":
+        with open('data.json', 'r', encoding='utf-8') as fh:
+            data = json.load(fh)
     return data
+
+
+# ----------- load parametres
+setting = load_json("setting")
+# ----------- end load parametres
 
 
 def write_json(data, query):
     if query == "setting":
         with open('setting.json', 'w', encoding='utf-8') as fh:
             json.dump(data, fh, indent=3)
-    if query == "":
-        pass
-    return data
+    if query == "poll":
+        with open('poll.json', 'w', encoding='utf-8') as fh:
+            json.dump(data, fh, indent=3)
+    if query == "data":
+        with open('data.json', 'w', encoding='utf-8') as fh:
+            json.dump(data, fh, indent=3)
 
 
 @thread
 def internet():
-
+    print("start thread internet")
     global internet_status
     while True:
         try:
             requests.get(
-                'http://smartdevgroup.hopto.org', timeout=1)
+                setting["domain"], timeout=1)
             internet_status = True
         except requests.exceptions.RequestException:
             internet_status = False
@@ -46,10 +58,60 @@ def internet():
     print("close thread")
 
 
+@thread
+def pool_sensors():
+    print("start thread polling")
+    timer = time.time()
+    while True:
+        t = time.time()
+        if(t - timer >= 2.0):
+            timer = t
+            print("polling sensors")
+            data_devices = load_json("data")
+            data = {"user": setting["accId"]}
+            # data = {}
+            for key in data_devices.keys():
+                try:
+                    reqToESP = requests.get("http://" +
+                                            data_devices[key]["ip"] +
+                                            setting["urlToSensors"],
+                                            timeout=1)
+                    reqToESP.text()
+                    data.update({str(key): reqToESP})
+                except requests.exceptions.RequestException:
+                    pass
+                    data.update({str(key): "null"})
+                    # print("error connection from ", data_devices[key]["id"])
+            write_json(data, "poll")
+
+
+@thread
+def send_temp():
+    print("start thread sending to server")
+    timer = time.time()
+    while True:
+        t = time.time()
+        if(t - timer >= 5.0):
+            timer = t
+            print("normal send data of sensors to server")
+            data = load_json("poll")
+            print(data)
+            try:
+                reqToServer = requests.post(setting["domain"] +
+                                            setting["urlToSendTemp"],
+                                            data)
+            except requests.exceptions.RequestException:
+                print("error to send data of sensors to server")
+            print(reqToServer)
+
+
 # ----------------- loop ---------------------------
-setting = load_json("setting")
+
 internet()
-time.sleep(2)
+time.sleep(1)
+pool_sensors()
+send_temp()
+
 
 while setting["first_connection"] == "True":
     print("in while")
@@ -60,7 +122,6 @@ while setting["first_connection"] == "True":
     print("data is :")
     print(data)
     if(data == ""):
-        print("data = ' '")
         time.sleep(1)
         data = requests.get(url).text
         print("data is :")
@@ -81,11 +142,13 @@ if internet_status and setting["accId"] != "NULL":
     data_old = requests.get(
         setting["domain"] + setting["urlToData"] + setting["accId"] +
         setting["urlToDataOld"]).json()
+    write_json(data_old, "data")
     print(data_old)
 
 
 while True:
     print("internet_status is", internet_status)
+
     if internet_status and setting["accId"] != "NULL":
         try:
             data = requests.get(setting["domain"] +
@@ -98,13 +161,19 @@ while True:
                     url += data[key]["ip"]
                     url += "/LED?status="
                     url += data[key]["value"]
-                    # reqToESP = requests.get(url)
+                    '''
+                    try:
+                        reqToESP = requests.get(url)
+                    except requests.exceptions.RequestException:
+                        print("error to send request to esp")
+                    '''
                     print(url)
+                    print(data[key]["name"])
 
         except requests.exceptions.RequestException:
             data = "time out"
             print("time out or ather error")
-        # print(data)
+        print(data)
         time.sleep(1)
     else:
         print("you have not connection to server")
