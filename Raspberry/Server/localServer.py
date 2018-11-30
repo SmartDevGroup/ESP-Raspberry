@@ -75,13 +75,14 @@ def pool_sensors():
                     reqToESP = requests.get("http://" +
                                             data_devices[key]["ip"] +
                                             setting["urlToSensors"],
-                                            timeout=1)
-                    reqToESP.text()
-                    data.update({str(key): reqToESP})
+                                            timeout=1).text
+                    data.update(
+                        {str(key): {"temp": reqToESP, "connection": 1}})
                 except requests.exceptions.RequestException:
                     pass
-                    data.update({str(key): "null"})
-                    # print("error connection from ", data_devices[key]["id"])
+                    data.update(
+                        {str(key): {"temp": "null", "connection": "null"}})
+                    print("error connection from ", data_devices[key]["id"])
             write_json(data, "poll")
 
 
@@ -95,6 +96,7 @@ def send_temp():
             timer = t
             print("normal send data of sensors to server")
             data = load_json("poll")
+            data = json.dumps(data)
             print(data)
             try:
                 reqToServer = requests.post(setting["domain"] +
@@ -161,12 +163,10 @@ while True:
                     url += data[key]["ip"]
                     url += "/LED?status="
                     url += data[key]["value"]
-                    '''
                     try:
                         reqToESP = requests.get(url)
                     except requests.exceptions.RequestException:
                         print("error to send request to esp")
-                    '''
                     print(url)
                     print(data[key]["name"])
 

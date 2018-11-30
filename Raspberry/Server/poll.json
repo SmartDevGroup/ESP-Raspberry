@@ -1,51 +1,51 @@
 {
    "user": "123456789",
    "1": {
-      "temp": 24,
-      "connection": 0
+      "temp": "null",
+      "connection": "null"
    },
    "2": {
-      "temp": 24,
-      "connection": 0
+      "temp": "null",
+      "connection": "null"
    },
    "3": {
-      "temp": 24,
-      "connection": 0
+      "temp": "null",
+      "connection": "null"
    },
    "4": {
-      "temp": 24,
-      "connection": 0
+      "temp": "null",
+      "connection": "null"
    },
    "5": {
-      "temp": 24,
-      "connection": 0
+      "temp": "null",
+      "connection": "null"
    },
    "6": {
-      "temp": 24,
-      "connection": 0
+      "temp": "null",
+      "connection": "null"
    },
    "7": {
-      "temp": 24,
-      "connection": 0
+      "temp": "null",
+      "connection": "null"
    },
    "8": {
-      "temp": 24,
-      "connection": 0
+      "temp": "null",
+      "connection": "null"
    },
    "9": {
-      "temp": 24,
-      "connection": 0
+      "temp": "null",
+      "connection": "null"
    },
    "10": {
-      "temp": 24,
-      "connection": 0
+      "temp": "null",
+      "connection": "null"
    },
    "11": {
-      "temp": 24,
-      "connection": 0
+      "temp": "null",
+      "connection": "null"
    },
    "12": {
-      "temp": 24,
-      "connection": 0
+      "temp": "null",
+      "connection": "null"
    }
 }

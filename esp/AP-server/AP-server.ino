@@ -1,3 +1,5 @@
+#include <OneWire.h>                                    // Подключаем библиотеку Wire
+#include <DallasTemperature.h>
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h> 
 #include <ESP8266WebServer.h>
@@ -6,8 +8,9 @@
 
 
 const char *ssid = "**Smart Socket**";
-const char *serial = "1596347812";
+const char *serial = "1596347810";
 #define LED 2
+#define ONE_WIRE_BUS 0
 
 String status;
 String status_old = "Disable";
@@ -18,6 +21,8 @@ char LAN_PSWD[16];
 char ipAddr[16];
 String accID;
 
+OneWire oneWire(ONE_WIRE_BUS);
+DallasTemperature DS18B20(&oneWire);
 ESP8266WebServer server(80);
 HTTPClient http;
 unsigned long timeStart;
@@ -116,11 +121,11 @@ void setup() {
 		    delay(1000);
 		    ESP.restart();
 		});
-/*
+
 		server.on("/Sensor", []() {
 			server.send(200, "text/html", getSensorProperty());
 		});
-*/
+
 	  	server.on("/config", []() {
 	  		writeEEPROM(0,16,strdup((server.arg("SSID_").c_str())));
 	    	writeEEPROM(17,33,strdup((server.arg("PASSWORD_").c_str())));
@@ -228,7 +233,7 @@ void reqToChangeIP(String ip) {
         }
 		Serial.println("Start GET request");
 	    String url;
-	    url += "http://192.168.43.56/service/add_socket.php?";
+	    url += "http://smartdevgroup.hopto.org/service/add_socket.php?";
 	    url += "serial=";
 	    url += String(serial);
 	    url += "&ip=";
@@ -261,9 +266,9 @@ String chek_control() {
     delay(10);
     return status;
   }
-/*
+
 String getSensorProperty() {
-  DS18B20.requestTemperatures(); 
-  return String(DS18B20.getTempCByIndex(0));
+  //DS18B20.requestTemperatures(); 
+  //return String(DS18B20.getTempCByIndex(0));
+  return String(25);
 }
-*/
