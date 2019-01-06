@@ -33,9 +33,8 @@ void wifi_connection(){
           reqToChangeIP(ip);
           writeEEPROM(34,16,strdup(ip.c_str())); // якщо адреса відрізняється перезаписати її
           break;
-        }
-      }    
-  
+          }
+        }    
       }
 
 

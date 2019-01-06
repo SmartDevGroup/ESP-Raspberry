@@ -1,5 +1,3 @@
-#include <OneWire.h>                                    
-#include <DallasTemperature.h>
 #include <ESP8266WiFi.h>
 #include <WiFiClient.h> 
 #include <ESP8266WebServer.h>
@@ -9,8 +7,8 @@
 
 const char *ssid = "**Smart Socket**";
 const char *serial = "1596347899";
+
 #define LED 2
-#define ONE_WIRE_BUS 3
 
 String status;
 String status_old = "Disable";
@@ -20,16 +18,12 @@ char LAN_SSID[16];
 char LAN_PSWD[16];
 char ipAddr[16];  
 String accID;
+String SSIDS[32];
 
-OneWire oneWire(ONE_WIRE_BUS);
-DallasTemperature DS18B20(&oneWire);
 ESP8266WebServer server(80);
 HTTPClient http;
-unsigned long timeStart;
 
 void setup() {
-  GPIO_setup(); // ініціалізація GPIO
-	timeStart = millis(); // початок таймера
 	Serial.begin(115200);
 	delay(1000);
 	readEEPROM(0,16,LAN_SSID); // зчитання даних з енергонезалежної пам'яті
@@ -41,18 +35,10 @@ void setup() {
 
 	wifi_connection(); // підклчення до мережі інтернет
 
-	routes();
-
   server.begin();
-  Serial.end();
 }
 
 
 void loop() {
   server.handleClient();
-  if(millis() - timeStart > 5000 && accID == "") {
-  	timeStart = millis();
-  	reqToChangeIP(String(ipAddr));
-  	Serial.println(String(ipAddr));
-  }
 }

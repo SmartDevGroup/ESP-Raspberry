@@ -69,7 +69,6 @@ def pool_sensors():
             print("polling sensors")
             data_devices = load_json("data")
             data = {"user": setting["accId"]}
-            # data = {}
             for key in data_devices.keys():
                 try:
                     reqToESP = requests.get("http://" +
@@ -111,8 +110,6 @@ def send_temp():
 
 internet()
 time.sleep(1)
-pool_sensors()
-send_temp()
 
 
 while setting["first_connection"] == "True":
@@ -141,6 +138,8 @@ while setting["first_connection"] == "True":
 global internet_status
 
 if internet_status and setting["accId"] != "NULL":
+    pool_sensors()
+    send_temp()
     data_old = requests.get(
         setting["domain"] + setting["urlToData"] + setting["accId"] +
         setting["urlToDataOld"]).json()
