@@ -20,6 +20,10 @@ void routeNormalConn(){
       server.send(200, "text/html", normal_connected());
     });
 
+    server.on("/first", []() {
+      server.send(200, "text/html", first_conncet());
+    });
+
     server.on("/LED", [](){
       server.send(200, "text/html", chek_control());
     });
